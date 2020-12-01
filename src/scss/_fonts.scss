@@ -1,0 +1,8 @@
+@import "_mixins/font-face";
+
+@include font-face("Lato", "../fonts/Lato/Lato-Regular", 400);
+@include font-face("Lato", "../fonts/Lato/Lato-Black", 900);
+@include font-face("Gilroy", "../fonts/Gilroy/Gilroy-Medium", 500);
+@include font-face("Gilroy", "../fonts/Gilroy/Gilroy-Black", 900);
+
+

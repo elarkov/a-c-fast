@@ -1,0 +1,18 @@
+// .degubGrid{
+//     @include debug(rgba(0, 0, 0, 0.4), 1px solid #ff0);
+// }
+
+.wrapper {
+	position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  @include wrapper();
+}
+
+p {
+  font-family: $gilory;
+  font-weight: 500;
+}

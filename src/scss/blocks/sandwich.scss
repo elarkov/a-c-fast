@@ -1,0 +1,63 @@
+/*мобильная кнопка sandwich*/
+.sandwich {
+  display: none;
+  position: relative;
+  right: 0;
+  width: 40px;
+  height: 30px;
+  z-index: 2;
+  border-radius: 1px;
+  @include xs-block {
+    display: block;
+  }
+}
+
+.sandwich__inner { 
+  display: block;
+  width: 40px;
+  height: 3px; 
+  margin-top: 12px;
+  background: #ffffff;
+  border-radius: 1px;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  
+  &::before, &::after { 
+    display: block; 
+    position: absolute; 
+    content: "";
+    z-index: -1;
+    width: 40px; 
+    height: 3px; 
+    background: #ffffff;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out; 
+  }
+  &::before {
+    top: 0;
+  }
+  &::after {
+    top: 24px;
+  }
+}
+
+/* состояние при клике */
+.sandwich--open {
+  .sandwich__inner {
+    background: none;
+
+    &::before, &::after {
+      top: 12px; 
+    }
+    &::before {
+      -webkit-transform: rotate(-45deg); 
+      -ms-transform: rotate(-45deg); 
+      transform: rotate(-45deg);
+    }
+    &::after {
+      -webkit-transform: rotate(45deg); 
+      -ms-transform: rotate(45deg); 
+      transform: rotate(45deg);
+    }
+  } 
+}
