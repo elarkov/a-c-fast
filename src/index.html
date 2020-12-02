@@ -5,27 +5,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/round-slider@1.6.1/dist/roundslider.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
+    <div id="sprite" style="display: none">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <symbol id="profile" viewBox="0 0 17 17">
+                <path d="M15.0013 16V14.3333C15.0013 13.4493 14.6501 12.6014 14.025 11.9763C13.3999 11.3512 12.552 11 11.668 11H5.0013C4.11725 11 3.2694 11.3512 2.64428 11.9763C2.01916 12.6014 1.66797 13.4493 1.66797 14.3333V16" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M8.33724 7.66667C10.1782 7.66667 11.6706 6.17428 11.6706 4.33333C11.6706 2.49238 10.1782 1 8.33724 1C6.49629 1 5.00391 2.49238 5.00391 4.33333C5.00391 6.17428 6.49629 7.66667 8.33724 7.66667Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </symbol>
+            <symbol id="regulator" viewBox="0 0 18 20">
+                <path d="M8.78928 0C7.8199 0 7.03131 0.788593 7.03131 1.75797V8.82889C7.03131 9.79827 7.8199 10.5869 8.78928 10.5869C9.75865 10.5869 10.5472 9.79827 10.5472 8.82889V1.75797C10.5472 0.788593 9.75865 0 8.78928 0Z"/>
+                <path d="M14.6725 4.64656C13.9327 3.97926 12.856 4.05515 12.21 4.71972C11.5603 5.38804 11.5101 6.51996 12.3331 7.27035C13.6394 8.45765 14.2996 10.257 13.9869 12.0722C13.5623 14.5358 11.4198 16.4772 8.7896 16.4829C6.09543 16.4889 4.03145 14.4997 3.6057 12.162C3.27379 10.3359 3.88613 8.50757 5.24523 7.27148C6.06594 6.52433 6.02308 5.38742 5.37156 4.71836C4.72441 4.05379 3.64129 3.98199 2.895 4.65742C0.828248 6.52941 -0.250579 9.29683 0.0495772 12.1019C0.526842 16.562 4.29262 19.9997 8.81031 19.9997C13.2762 19.9997 16.9327 16.5538 17.4965 12.3926C17.8897 9.49296 16.8339 6.59734 14.6725 4.64656Z"/>
+            </symbol>
+            <symbol id="dry" viewBox="0 0 18 19">
+                <path d="M15.8053 10.2892L15.8053 10.2892C15.3542 9.90221 14.9586 9.56438 14.482 9.31821C14.0126 9.07571 13.4558 8.91858 12.6875 8.91858C11.9191 8.91858 11.3623 9.07571 10.8929 9.31821C10.4163 9.56438 10.0208 9.90221 9.56959 10.2892L9.56591 10.2923C8.61227 11.1103 7.47998 12.0815 5.31239 12.0815C3.14492 12.0815 2.0127 11.1103 1.05911 10.2924L1.05535 10.2892C1.05535 10.2892 1.05535 10.2892 1.05535 10.2892C0.688545 9.97457 0.64624 9.42215 0.96088 9.05535L15.8053 10.2892ZM15.8053 10.2892C16.1721 10.6038 16.7245 10.5615 17.0392 10.1947L17.0392 10.1947M15.8053 10.2892L17.0392 10.1947M17.0392 10.1947C17.3537 9.8279 17.3115 9.2755 16.9446 8.96087L16.9409 8.95768C15.9873 8.13975 14.855 7.16858 12.6875 7.16858C10.5198 7.16858 9.38753 8.13979 8.43388 8.95778L8.43026 8.96088C8.43026 8.96088 8.43025 8.96088 8.43025 8.96088C7.97908 9.34785 7.58353 9.68568 7.10696 9.93185C6.6375 10.1744 6.08074 10.3315 5.31239 10.3315C4.54406 10.3315 3.98733 10.1744 3.51791 9.93187C3.04137 9.6857 2.64586 9.34788 2.19472 8.96089L2.19471 8.96088M17.0392 10.1947L2.19471 8.96088M2.19471 8.96088C1.82794 8.6463 1.27555 8.68849 0.960889 9.05534L2.19471 8.96088Z" stroke-width="0.5"/>
+                <path d="M1.05895 3.87369L1.05535 3.87061L1.05895 3.87369ZM1.05895 3.87369C2.01254 4.69168 3.14477 5.66291 5.31239 5.66291M1.05895 3.87369L5.31239 5.66291M5.31239 5.66291C7.48003 5.66291 8.61232 4.69169 9.56597 3.87371M5.31239 5.66291L9.56597 3.87371M9.56597 3.87371L9.56959 3.8706M9.56597 3.87371L9.56959 3.8706M9.56959 3.8706C10.0208 3.48363 10.4163 3.14581 10.8929 2.89963M9.56959 3.8706L10.8929 2.89963M10.8929 2.89963C11.3623 2.65713 11.9191 2.5 12.6875 2.5M10.8929 2.89963L12.6875 2.5M12.6875 2.5C13.4558 2.5 14.0125 2.65712 14.482 2.89962M12.6875 2.5L14.482 2.89962M14.482 2.89962C14.9586 3.14579 15.3541 3.48362 15.8053 3.87061M14.482 2.89962L15.8053 3.87061M15.8053 3.87061C16.1722 4.1853 16.7245 4.14288 17.0391 3.77609L15.8053 3.87061ZM2.19472 2.54231C2.64586 2.9293 3.04138 3.26712 3.51792 3.51329C3.98735 3.75578 4.54408 3.91291 5.31239 3.91291C6.08074 3.91291 6.6375 3.75578 7.10696 3.51327C7.58353 3.2671 7.97908 2.92927 8.43025 2.5423C8.43025 2.5423 8.43026 2.5423 8.43026 2.5423L8.43388 2.5392C9.38753 1.72121 10.5198 0.75 12.6875 0.75C14.8551 0.75 15.9874 1.72121 16.9411 2.53922L16.9446 2.54223C17.3114 2.85678 17.3538 3.40923 17.0391 3.77606L1.05534 3.8706C0.688541 3.55598 0.646241 3.00356 0.960889 2.63676C1.27552 2.26991 1.82794 2.22768 2.19472 2.54231ZM2.19472 2.54231L2.03195 2.73206L2.19472 2.54231Z" stroke-width="0.5"/>
+                <path d="M2.20161 15.3862L2.20153 15.3861L2.19472 15.3803L2.19463 15.3802C1.82785 15.0657 1.27552 15.1079 0.960873 15.4747L0.960852 15.4747C0.646247 15.8415 0.688548 16.3939 1.05535 16.7085L1.05892 16.7116C2.01255 17.5296 3.14481 18.5008 5.31236 18.5008C7.48 18.5008 8.61229 17.5296 9.56594 16.7116L9.56956 16.7085C10.0207 16.3215 10.4163 15.9837 10.8929 15.7375C11.3623 15.495 11.9191 15.3379 12.6874 15.3379C13.4558 15.3379 14.0126 15.495 14.482 15.7375C14.9586 15.9837 15.3541 16.3215 15.8053 16.7085L15.8053 16.7085C16.1721 17.0231 16.7245 16.9809 17.0391 16.614L17.0391 16.614C17.3537 16.2472 17.3115 15.6948 16.9446 15.3802L16.9409 15.377C15.9873 14.5591 14.855 13.5879 12.6874 13.5879C10.5198 13.5879 9.3875 14.5591 8.43385 15.3771L8.43023 15.3802C8.43023 15.3802 8.43023 15.3802 8.43023 15.3802C7.97906 15.7672 7.5835 16.105 7.10693 16.3512C6.63747 16.5937 6.08071 16.7508 5.31236 16.7508C4.54408 16.7508 3.98736 16.5937 3.51793 16.3512C3.04382 16.1063 2.64989 15.7707 2.20161 15.3862Z" stroke-width="0.5"/>
+            </symbol>
+            <symbol id="cool" viewBox="0 0 20 22">
+                <path d="M13.7137 12.2071L11.645 11L13.7136 9.79289C13.9864 9.63377 14.0809 9.27953 13.9246 9.00171C13.7684 8.72389 13.4206 8.62768 13.148 8.78683L11.0691 9.99985V7.57972C11.0691 7.25953 10.8143 7 10.5 7C10.1857 7 9.93092 7.25953 9.93092 7.57972V9.99985L7.85204 8.78683C7.5793 8.62765 7.23159 8.72389 7.07537 9.00171C6.91916 9.27953 7.01363 9.63374 7.28633 9.79289L9.35505 11L7.28636 12.2071C7.01363 12.3663 6.91918 12.7205 7.0754 12.9983C7.23161 13.2761 7.5793 13.3723 7.85206 13.2132L9.93092 12.0001V14.4203C9.93092 14.7405 10.1857 15 10.5 15C10.8143 15 11.0691 14.7405 11.0691 14.4203V12.0001L13.148 13.2132C13.4207 13.3723 13.7684 13.2761 13.9246 12.9983C14.0809 12.7205 13.9864 12.3663 13.7137 12.2071Z" stroke-width="0.5"/>
+                <path d="M17.4343 4.43183L12.4304 1.56539C11.1145 0.811558 9.47938 0.811519 8.16337 1.56539L3.15946 4.43183C1.82747 5.19488 1.00001 6.62269 1.00001 8.15804V13.8419C1.00001 15.3773 1.82747 16.8051 3.1595 17.5682L8.1634 20.4346C9.47942 21.1885 11.1144 21.1885 12.4304 20.4346L17.4343 17.5682C18.7663 16.8051 19.5938 15.3773 19.5938 13.8419V8.15804C19.5938 6.62265 18.7663 5.19484 17.4343 4.43183ZM18.0313 13.8419C18.0313 14.8185 17.5049 15.7266 16.6577 16.2119L11.6539 19.0784C10.8169 19.5579 9.77692 19.5579 8.93989 19.0784L3.93598 16.2119C3.0888 15.7266 2.56251 14.8185 2.56251 13.8419V8.15804C2.56251 7.18148 3.0888 6.27335 3.93602 5.78804L8.93993 2.9216C9.77688 2.44214 10.8169 2.44207 11.6539 2.9216L16.6578 5.78804C17.5049 6.27335 18.0313 7.18148 18.0313 8.15804V13.8419Z" stroke-width="0.5"/>
+            </symbol>
+            <symbol id="program" viewBox="0 0 19 23">
+                <path d="M7.25 2.5625H11.9375C12.369 2.5625 12.7188 2.21273 12.7188 1.78125C12.7188 1.34977 12.369 1 11.9375 1H7.25C6.81852 1 6.46875 1.34977 6.46875 1.78125C6.46875 2.21273 6.81852 2.5625 7.25 2.5625Z" stroke-width="0.5"/>
+                <path d="M9.59375 4.8125C4.84359 4.8125 1 8.65676 1 13.4062C1 18.1563 4.84414 22 9.59375 22C14.3439 22 18.1875 18.1557 18.1875 13.4062C18.1875 8.65609 14.3432 4.8125 9.59375 4.8125ZM9.59375 20.4375C5.71672 20.4375 2.5625 17.2833 2.5625 13.4062C2.5625 9.52922 5.71672 6.375 9.59375 6.375C13.4708 6.375 16.625 9.52922 16.625 13.4062C16.625 17.2833 13.4708 20.4375 9.59375 20.4375Z" stroke-width="0.5"/>
+                <path d="M9.59375 9.71875C9.16227 9.71875 8.8125 10.0685 8.8125 10.5V14.4062C8.8125 14.8377 9.16227 15.1875 9.59375 15.1875C10.0252 15.1875 10.375 14.8377 10.375 14.4062V10.5C10.375 10.0685 10.0252 9.71875 9.59375 9.71875Z" stroke-width="0.5"/>
+            </symbol>
+        </svg>
+    </div>
 
     <div class="wrapper">
         <div class="container">
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil nemo dolorem dignissimos dolore ad cumque perferendis ullam architecto facere dolores! Nihil vitae eos natus laboriosam repellendus dolorem nam. Ducimus, dolores.
-        Nisi debitis repellat a ratione fugit nihil consequatur pariatur deserunt incidunt eveniet nesciunt culpa ea, quae minima? Inventore tempore tenetur quod dicta autem aperiam reiciendis, labore molestiae doloribus omnis vero?
-        Soluta saepe ea necessitatibus at ipsa tempore voluptate maxime deleniti. Id magni nemo, accusamus est hic maiores excepturi sint ipsa sequi quo vel suscipit error ea, quasi inventore! Ratione, delectus?
-        Rem nemo nobis esse molestiae laboriosam id, consequatur quidem aspernatur asperiores? Sint, nemo perferendis vero corporis iure cumque culpa aliquid repellat cupiditate sed, officiis reprehenderit quasi beatae itaque corrupti alias!
-        Atque, aspernatur tenetur odio blanditiis corrupti cum exercitationem incidunt nemo nesciunt quidem quo fugiat accusamus dolor dicta! Laborum aperiam sapiente quia ipsam porro, impedit quos a mollitia. Ipsa, itaque quis.
-        Maxime modi sed neque! Est velit praesentium eaque facere, nesciunt doloremque beatae nihil? Laborum ipsum corporis dolorem expedita, quis commodi esse assumenda nam quod nesciunt nisi consequatur odio minima animi.
-        Omnis perferendis consequuntur nostrum, sit tempora optio accusamus. Molestias, eaque architecto ad laboriosam ea eos eum. Facilis aspernatur enim voluptatem vitae quod amet, dolores voluptate quos error alias suscipit vel.
-        Suscipit, asperiores modi voluptate similique accusantium laboriosam? Dolor, perspiciatis dignissimos! Odit a enim perspiciatis fugiat illo suscipit, blanditiis praesentium sunt obcaecati ducimus dolorum repellat libero optio omnis. Sapiente, suscipit soluta.
-        Nam atque aliquid minima animi excepturi blanditiis aspernatur voluptatem repellat labore obcaecati fugit quasi ratione possimus in ad, maxime quas eos dignissimos suscipit laudantium eveniet perferendis, quisquam alias saepe! Corporis.
-        Exercitationem necessitatibus ut quisquam reiciendis iusto perspiciatis qui saepe, quo dolore quod. Dicta vitae necessitatibus illum nulla similique architecto perferendis, quia voluptatum natus tempora, debitis cumque tenetur perspiciatis animi quasi!</p>
+            <div class="weather">
+                <div class="weather__menu">
+                    <div class="weather__round-81"></div>
+                    <div class="weather__round-79"></div>
+                    <div class="weather__round-80"></div>
+                    <div class="weather__round-82"></div>
+                    <div class="sandwich">
+                        <div class="sandwich__inner"></div>
+                    </div>
+                </div>
+                <div class="weather__profile">
+                    <div class="weather__round-81"></div>
+                    <div class="weather__round-79"></div>
+                    <div class="weather__round-80"></div>
+                    <div class="weather__round-82"></div>
+                    <svg><use xlink:href="#profile"></use></svg>
+                </div>
+                <div class="weather-inner">
+                    <div class="weather-drag"></div>
+                    <div class="weather-info">
+                        <p class="weather-info__turn">A/C is ON</p>
+                        <p class="weather-info__text">
+                            <span>Currently 27 C</span> 
+                            <span>Will change in 2min</span>
+                        </p>
+                    </div>
+                    <div class="weather-turn">
+                        <div class="button weather-turn__btn">
+                            <div class="button__round-81"></div>
+                            <div class="button__round-79"></div>
+                            <div class="button__round-82"></div>
+                            <div class="button__round-83"></div>
+                            <svg><use xlink:href="#regulator"></use></svg>
+                        </div>
+                    </div>
+                    <div class="weather-inner__slider">
+                        <div id="slider" class="round-slider"></div>
+                    </div>
+                    <div class="fan-speed">
+                        <p class="fan-speed__title">Fan speed</p>
+                        <div class="control">
+                            <div class="control-slider">
+                                <input id="range-slider-input" type="range" role="slider" aria-valuemin="1" aria-valuemax="5" aria-valuetext="3" min="1" max="5" step="1" value="3" values='{"1": "1", "2": "2", "3": "3", "4": "4", "5": "5"}'>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mode">
+                        <p class="mode__title">Mode</p>
+                        <div class="mode-list">
+                            <div class="mode-list__item">
+                                <p>Auto</p>
+                                <div class="button">
+                                    <div class="button__round-81"></div>
+                                    <div class="button__round-79"></div>
+                                    <div class="button__round-82"></div>
+                                    <div class="button__round-83"></div>
+                                    <span>A</span>
+                                </div>
+                            </div>
+                            <div class="mode-list__item">
+                                <p>Dry</p>
+                                <div class="button button--dry">
+                                    <div class="button__round-81"></div>
+                                    <div class="button__round-79"></div>
+                                    <div class="button__round-82"></div>
+                                    <div class="button__round-83"></div>
+                                    <svg><use xlink:href="#dry"></use></svg>
+                                </div>
+                            </div>
+                            <div class="mode-list__item">
+                                <p>Cool</p>
+                                <div class="button button--cool">
+                                    <div class="button__round-81"></div>
+                                    <div class="button__round-79"></div>
+                                    <div class="button__round-82"></div>
+                                    <div class="button__round-83"></div>
+                                    <svg><use xlink:href="#cool"></use></svg>
+                                </div>
+                            </div>
+                            <div class="mode-list__item">
+                                <p>Program</p>
+                                <div class="button button--program">
+                                    <div class="button__round-81"></div>
+                                    <div class="button__round-79"></div>
+                                    <div class="button__round-82"></div>
+                                    <div class="button__round-83"></div>
+                                    <svg><use xlink:href="#program"></use></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script src="js/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/round-slider@1.6.1/dist/roundslider.min.js"></script>
 </body>
 
 </html>

@@ -2,4 +2,7 @@ $default-font: "Lato", "Arial", sans-serif;
 $gilory: "Gilroy", "Arial", sans-serif;
 $text: #000;
 $accent: #7F8489;
+$lower-color: #0782DB;
+$track-height: 3px;
+$lower-background: linear-gradient(to bottom, $lower-color, $lower-color) 100% 50% / 100% $track-height no-repeat transparent;
 

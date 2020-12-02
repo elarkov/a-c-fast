@@ -20,6 +20,7 @@ const isSync = process.argv.includes('--sync');
 
 let jsFiles = [
 	'node_modules/jquery/dist/jquery.min.js',
+	'src/libs/roundSlider/roundslider.min.js',
 	'src/js/custom.js',
 ];
 
